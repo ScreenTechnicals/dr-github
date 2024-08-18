@@ -115,3 +115,8 @@ Please ensure that your code adheres to our coding standards and passes all lint
 ## License Information
 
 This project is licensed under the [MIT License](./LICENSE.md). By contributing, you agree that your contributions will be licensed under this license.
+
+
+## Thanks to the special contributors and testers
+@meness
+@RitikJ22
