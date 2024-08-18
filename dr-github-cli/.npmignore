@@ -1,0 +1,35 @@
+# Ignore development files and directories
+node_modules/
+build/
+tmp/
+
+# Ignore test and source files and directories
+test/
+src/
+
+*.log
+
+# Ignore configuration files
+*.env
+
+# Ignore TypeScript configuration files
+tsconfig.json
+
+# Ignore Rollup configuration files
+rollup.config.mjs
+
+# Ignore version control files
+.git/
+.gitignore
+.drignore
+.drconventions
+
+# Ignore editor files and directories
+.vscode/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore report files
+reports/

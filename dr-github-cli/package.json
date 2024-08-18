@@ -1,0 +1,49 @@
+{
+  "name": "dr-github",
+  "version": "1.1.20",
+  "description": "A CLI tool that examines the project from Local or from GitHub repo using AI",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "build": "tsc",
+    "dev": "npm run build && npm run start"
+  },
+  "bin": {
+    "dr-github": "./dist/index.js"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^0.0.36",
+    "ai": "^3.2.22",
+    "chalk": "^5.3.0",
+    "cli-spinners": "^3.1.0",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "ignore-file": "^1.1.3",
+    "inquirer": "^10.0.1",
+    "log-update": "^6.0.0",
+    "minimatch": "^10.0.1",
+    "path": "^0.12.7",
+    "simple-git": "^3.25.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  },
+  "keywords": [
+    "cli",
+    "github",
+    "dr-github-cli",
+    "dr-github",
+    "ai",
+    "openai",
+    "node"
+  ],
+  "author": "Chinmaya Sa",
+  "license": "MIT"
+}
