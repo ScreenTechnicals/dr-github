@@ -1,0 +1,78 @@
+# Node.js and Yarn
+**/node_modules/
+.pnp/
+.pnp.js
+.yarn/install-state.gz
+
+# Build and Output Directories
+**/build/
+**/dist/
+**/.next/
+**/out/
+
+# Testing
+**/coverage/
+
+# Miscellaneous
+.DS_Store
+*.pem
+
+# Debug Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vercel
+.vercel
+
+# TypeScript
+**/*.tsbuildinfo
+**/next-env.d.ts
+
+# Bower (if any packages still use it)
+**/bower_components/
+
+# Editor-Specific
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+
+# OS-Specific
+.DS_Store
+Thumbs.db
+
+# Compiled Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Package Lock Files
+package-lock.json
+yarn.lock
+bun.lockb
+
+# Environment-Specific Files
+**/.env
+**/.env.local
+**/.env.*.local
+**/.env.test
+**/.env.production
+
+# Sensitive or Personal Files
+**/secrets.json
+**/credentials.txt
+
+# Custom Files
+.drignore
+.drconventions
+.nexe
+
+# Temporary Files and Directories
+/tmp/
+**/.tmp/
+**/.cache/
