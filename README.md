@@ -116,7 +116,9 @@ Please ensure that your code adheres to our coding standards and passes all lint
 
 This project is licensed under the [MIT License](./LICENSE.md). By contributing, you agree that your contributions will be licensed under this license.
 
+## Thanks to the Special Contributors and Testers
 
-## Thanks to the special contributors and testers
-@meness
-@RitikJ22
+A big thank you to the following individuals for their contributions and testing:
+
+- [@meness](https://github.com/meness)
+- [@RitikJ22](https://github.com/RitikJ22)
