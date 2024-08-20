@@ -204,7 +204,7 @@ export const ReportTable = ({ data, projectName }: ReportTableProps) => {
           isOpen={isOpen}
           onOpenChange={onOpenChange}
           data={report}
-          title={projectName}
+          title={report.filename}
           projectName={projectName}
         />
       )}
