@@ -24,10 +24,12 @@ dr-github init
 dr-github examine
 ```
 
+**NOTE**: If you want to trace the files that are checked or skipped then you can add **`-t`** or **`--trace`** flag at the end of the above command
+
 ## API Key
 
-- You will need at least a `tier-1` plan of open ai that's all.
-- Run the following command to change the api key you want to change
+- You will need at least a `tier-1` plan of **open ai** that's all, e.g. $8 to $10.
+- Run the following command to change the **open ai api key** you want to change
 
 ```
 dr-github setkey
