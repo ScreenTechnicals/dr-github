@@ -4,7 +4,7 @@
 
 ## Installation
 
-Install the package via npm or yarn or bun:
+Install the package
 
 ```
 npm install dr-github -g
@@ -62,14 +62,14 @@ You can visualize the `ai-report.json` file in a table view for better readablit
 
 #### vist: [dr-github](https://dr-github.devverse.io/)
 
-### Shareale Image Example
+### Visualization
 
-![Management-System-report](https://github.com/user-attachments/assets/89c0b915-b85e-441d-9908-7a91d90cc79c)
-
-### Table Visualization
-
-![Screenshot 2024-08-11 at 1 14 47 AM](https://github.com/user-attachments/assets/bc88b46a-eb84-4258-a265-14c030af9404)
+![screencapture-dr-github-devverse-io-2024-08-18-20_29_35](https://github.com/user-attachments/assets/08c7ba9e-f39e-4bf0-84c7-c8ef63065f04)
 
 ## License
 
 This project is licensed under the MIT License
+
+## Contribute
+
+Dr. GitHub is a open source project. To contribute [click here](https://github.com/ScreenTechnicals/dr-github)
