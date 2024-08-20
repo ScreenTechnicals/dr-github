@@ -3,15 +3,12 @@
 import { Report } from "@/common";
 import { useReportStore } from "@/stores";
 import { Button, Card, CardBody } from "@nextui-org/react";
-import html2canvas from "html2canvas";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { BiSolidFileJson } from "react-icons/bi";
-import { FaFileUpload } from "react-icons/fa";
-import { HiDownload } from "react-icons/hi";
+import { FaArrowRight, FaFileUpload } from "react-icons/fa";
 import { twJoin } from "tailwind-merge";
 import { Input } from "./input.component";
-import { ReportCard } from "./report-card.component";
 
 const DownloadJsonReport = () => {
   const [jsonReportData, setJsonReportData] = useState<Report[]>();
@@ -24,28 +21,6 @@ const DownloadJsonReport = () => {
   const openFile = () => {
     if (inputRef.current) {
       inputRef.current.click();
-    }
-  };
-
-  const handleDownloadImage = async () => {
-    if (!projectName) {
-      toast.error("Please enter a project name");
-      return;
-    }
-
-    if (reportCardRef.current) {
-      const canvas = await html2canvas(reportCardRef.current);
-      const data = canvas.toDataURL("image/jpg");
-      const link = document.createElement("a");
-
-      link.href = data;
-      link.download = `${projectName}-report.png`;
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      toast.success("Report downloaded successfully");
     }
   };
 
@@ -105,34 +80,30 @@ const DownloadJsonReport = () => {
         }}
       />
       {jsonReportData ? (
-        <div className="flex items-center justify-center flex-col overflow-hidden">
-          <Input
-            placeholder="Enter Project Name"
-            value={projectName}
-            onChange={(e) => {
-              setProjectName(e.target.value);
-            }}
-            className="mb-2"
-            endContent={
-              <Button
-                onPress={handleDownloadImage}
-                className="bg-white text-gray-800"
-                isIconOnly
-                startContent={<HiDownload />}
-              />
-            }
-            required
-          />
-          <ReportCard ref={reportCardRef} projectName={projectName} />
-          <Button
-            variant="light"
-            onPress={handleViewDetails}
-            radius="sm"
-            className="w-fit mt-2"
-          >
-            View Details
-          </Button>
-        </div>
+        <Card className="flex p-5 bg-gray-800 w-full md:w-[600px] items-center justify-center flex-col overflow-hidden">
+          <CardBody>
+            <h1 className="m-0 mb-5 text-center md:text-3xl text-2xl">
+              Please Enter Project Name
+            </h1>
+            <Input
+              placeholder="Enter Project Name"
+              value={projectName}
+              onChange={(e) => {
+                setProjectName(e.target.value);
+              }}
+              className="mb-2"
+              endContent={
+                <Button
+                  onPress={handleViewDetails}
+                  className="bg-white text-gray-800"
+                  isIconOnly
+                  startContent={<FaArrowRight />}
+                />
+              }
+              required
+            />
+          </CardBody>
+        </Card>
       ) : (
         <Card
           as={Button}
@@ -169,7 +140,7 @@ const DownloadJsonReport = () => {
               <BiSolidFileJson size={60} />
             )}
             <h1 className="text-base md:text-xl">
-              Drag and drop {"'ai-report.json'"}
+              Click Here or Drag and drop {"'ai-report.json'"}
             </h1>
           </CardBody>
         </Card>
