@@ -65,10 +65,6 @@ You can visualize the `ai-report.json` file in a table view for better readablit
 ### Visualization
 
 ![screencapture-dr-github-devverse-io-2024-08-18-20_29_35](https://github.com/user-attachments/assets/08c7ba9e-f39e-4bf0-84c7-c8ef63065f04)
-<<<<<<< HEAD
-=======
-
->>>>>>> ff63c50fde0a01169a99ec94d1118f79d7686361
 
 ## License
 
