@@ -1,7 +1,6 @@
 import fs from "fs";
 import inquirer from "inquirer";
 import logUpdate from "log-update";
-import { generateDrIgnore } from "../utils/index.js";
 
 export async function init() {
   try {
@@ -17,10 +16,6 @@ export async function init() {
 
       fs.appendFileSync(".env", `\nOPENAI_API_KEY="${openAiApiKey}"\n`);
       console.log("✅ API key saved successfully!\n");
-    }
-
-    if (!fs.existsSync("./.drignore")) {
-      await generateDrIgnore("./");
     }
 
     if (!fs.existsSync("./reports")) {

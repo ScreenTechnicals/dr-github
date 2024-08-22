@@ -1,5 +1,5 @@
 import cliSpinners from "cli-spinners";
-import fs from "fs/promises";
+import fs from "fs";
 import logUpdate from "log-update";
 import path from "path";
 import simpleGit from "simple-git";
@@ -8,6 +8,8 @@ import {
   generateDrIgnore,
   getFileSystemData,
 } from "./index.js";
+
+const fsPromises = fs.promises;
 
 export const getRepoContents = async (
   url: string
@@ -34,13 +36,15 @@ export const getRepoContents = async (
     const examiningDir = path.resolve("./examining");
     const repoDir = path.join(examiningDir, dirName);
 
-    await fs.mkdir(examiningDir, { recursive: true });
+    await fsPromises.mkdir(examiningDir, { recursive: true });
     await git.clone(githubProject, repoDir);
 
-    await generateDrIgnore(`./examining/${dirName}/`);
+    if (!fs.existsSync("./.drignore")) {
+      await generateDrIgnore("./");
+    }
     const fileSystemData = await getFileSystemData(repoDir);
 
-    await fs.rm(examiningDir, { recursive: true, force: true });
+    await fsPromises.rm(examiningDir, { recursive: true, force: true });
 
     clearInterval(inerval);
     logUpdate("📦 Repo contents fetched successfully!");

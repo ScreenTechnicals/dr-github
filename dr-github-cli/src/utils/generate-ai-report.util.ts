@@ -50,6 +50,9 @@ export const generateAiReport = async (
             );
           }
 
+          filesChecked += 1;
+          logUpdate("🧐 Files Checked: " + filesChecked + "/" + totalFiles);
+
           report.push({
             filename: content.name,
             path: content.path,
@@ -57,7 +60,7 @@ export const generateAiReport = async (
             issues: -1,
             issueTypes: ["skiped"],
             suggestions:
-              "The file is too large to process. Please split the file into smaller files.",
+              "The file is too large to process. Please split the file into smaller files or increase your api key limit",
           });
 
           continue;
@@ -70,33 +73,58 @@ export const generateAiReport = async (
           }
         }
 
-        const result = await generateObject({
-          model: openai((model as string).split(" ")[0]),
-          system: conventions?.length
-            ? `
-           This is a code review system that reviews code quality and provides suggestions to improve code quality and fix bugs or issues and also check the following conventions strictly: \n${conventions}
-            `
-            : "This is a code review system that reviews code quality and provides suggestions to improve code quality and fix bugs or issues.",
-          prompt: `Filename: ${content.name} \nPath: ${content.path}\n \n Content:\n${content.content}`,
-          schema: z.object({
-            filename: z.string().describe("The name of the file"),
-            path: z.string().describe("The path of the file"),
-            quality: z
-              .number()
-              .describe("The quality of the file in a scale of 1-10"),
-            issues: z.number().describe("The number of bugs in the file"),
-            issueTypes: z
-              .array(z.string())
-              .describe(
-                "The types of issues: 'critical' | 'ui' | 'security' | 'linting' | 'deprecated apis' | 'minor'"
-              ),
-            suggestions: z
-              .string()
-              .describe(
-                "Suggestions to improve code quality and fix the issues according to the issues to that respective file and provide codes to fix the issues if needed."
-              ),
-          }),
-        });
+        try {
+          const result = await generateObject({
+            model: openai((model as string).split(" ")[0]),
+            system: conventions?.length
+              ? `
+             This is a code review system that reviews code quality and provides suggestions to improve code quality and fix bugs or issues and also check the following conventions strictly: \n${conventions}
+              `
+              : "This is a code review system that reviews code quality and provides suggestions to improve code quality and fix bugs or issues.",
+            prompt: `Filename: ${content.name} \nPath: ${content.path}\n \n Content:\n${content.content}`,
+            schema: z.object({
+              filename: z.string().describe("The name of the file"),
+              path: z.string().describe("The path of the file"),
+              quality: z
+                .number()
+                .describe("The quality of the file in a scale of 1-10"),
+              issues: z.number().describe("The number of bugs in the file"),
+              issueTypes: z
+                .array(z.string())
+                .describe(
+                  "The types of issues: 'critical' | 'ui' | 'security' | 'linting' | 'deprecated apis' | 'minor'"
+                ),
+              suggestions: z
+                .string()
+                .describe(
+                  "Suggestions to improve code quality and fix the issues according to the issues to that respective file and provide codes to fix the issues if needed."
+                ),
+            }),
+          });
+
+          report.push(result.object);
+        } catch (error) {
+          if (isTrace) {
+            console.log(
+              chalk.red(`❌ ${content.path} is skipped due to an error`)
+            );
+          }
+
+          filesChecked += 1;
+          logUpdate("🧐 Files Checked: " + filesChecked + "/" + totalFiles);
+
+          report.push({
+            filename: content.name,
+            path: content.path,
+            quality: 0,
+            issues: -1,
+            issueTypes: ["skiped"],
+            suggestions:
+              "The file is too large to process. Please split the file into smaller files or increase your api key limit",
+          });
+
+          continue;
+        }
 
         if (isTrace) {
           console.log(chalk.green(`✅ ${content.path} checked`));
@@ -104,8 +132,6 @@ export const generateAiReport = async (
           filesChecked += 1;
           logUpdate("🧐 Files Checked: " + filesChecked + "/" + totalFiles);
         }
-
-        report.push(result.object);
       } else if (content.children) {
         const childReports = await generateAiReport(
           content.children,
