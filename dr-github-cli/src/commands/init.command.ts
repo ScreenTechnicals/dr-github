@@ -1,6 +1,7 @@
 import fs from "fs";
 import inquirer from "inquirer";
 import logUpdate from "log-update";
+import { generateDrIgnore } from "../utils/index.js";
 
 export async function init() {
   try {
@@ -21,6 +22,8 @@ export async function init() {
     if (!fs.existsSync("./reports")) {
       fs.mkdirSync("./reports");
     }
+
+    await generateDrIgnore("./");
 
     logUpdate(
       "✅ Initialized successfully!\n✨ Run: `dr-github examine` to start"

@@ -6,10 +6,6 @@ export const generateDrIgnore = async (projectPath: string) => {
   try {
     const gitIgnorePath = path.resolve(`${projectPath}.gitignore`);
 
-    if (!fs.existsSync(gitIgnorePath)) {
-      throw new Error("🚫 .gitignore file not found! Please add .gitignore");
-    }
-
     const drIgnorePath = path.resolve(".drignore");
 
     let drIgnoreContent = `
@@ -72,6 +68,8 @@ reports/
         .join("\n");
 
       drIgnoreContent += `\n\n# Entries from .gitignore\n${filteredContent}`;
+    } else {
+      drIgnoreContent += `\n\n# No .gitignore file found`;
     }
 
     fs.writeFileSync(drIgnorePath, drIgnoreContent, "utf-8");
